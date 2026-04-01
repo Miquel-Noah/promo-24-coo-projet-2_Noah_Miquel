@@ -2,6 +2,7 @@ package duckcorp.factory;
 
 import duckcorp.duck.Duck;
 import duckcorp.machine.Machine;
+import duckcorp.machine.Maintainable;
 import duckcorp.order.Order;
 import duckcorp.stats.ProductionStats;
 import duckcorp.stock.Stock;
@@ -77,8 +78,13 @@ public class Factory {
      * @return true si l'achat a réussi, false si budget insuffisant
      */
     public boolean buyMachine(Machine machine) {
-        // TODO
-        throw new UnsupportedOperationException("TODO : Factory.buyMachine()");
+        if(budget - machine.getPurchaseCost() > 0){
+            budget -= machine.getPurchaseCost();
+            machines.add(machine);
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /**
@@ -88,8 +94,13 @@ public class Factory {
      * @return true si la maintenance a réussi, false si budget insuffisant
      */
     public boolean maintainMachine(Machine machine) {
-        // TODO
-        throw new UnsupportedOperationException("TODO : Factory.maintainMachine()");
+        if(budget - machine.getMaintenanceCost() > 0){
+            budget -= machine.getMaintenanceCost();
+            machine.maintain();
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -103,8 +114,7 @@ public class Factory {
      * @return la liste de tous les canards produits ce tour
      */
     public List<Duck> runProduction() {
-        // TODO
-        throw new UnsupportedOperationException("TODO : Factory.runProduction()");
+        machines.stream().forEach(Machine::produceDuck);
     }
 
     /**
@@ -134,7 +144,9 @@ public class Factory {
      * pénalise la réputation de 5 points.
      */
     public void endTurn() {
-        // TODO
+        machines.forEach(Machine::degrade);
+        //machines.stream().filter(Maintainable::needsMaintenance)
+        //        .forEach(reputation = reputation - 5);
         throw new UnsupportedOperationException("TODO : Factory.endTurn()");
     }
 }

@@ -15,15 +15,25 @@ public class LuxuryDuck extends Duck{
 
     public static final double BASE_PRICE = 80.0;
 
+    /**
+     * Constructeur de LuxuryDuck
+     * @param qualityScore Indice de qualité
+     */
     public LuxuryDuck(int qualityScore){
         super(LUXURY,qualityScore);
     }
 
+    /**
+     * @return le prix de base du canard
+     */
     @Override
     public double getBasePrice() {
         return BASE_PRICE;
     }
 
+    /**
+     * @return le type de canards
+     */
     @Override
     public String describe() {
         return "Canard " + LUXURY.getLabel();

@@ -15,15 +15,25 @@ public class MiniDuck extends Duck{
 
     public static final double BASE_PRICE = 12.0;
 
+    /**
+     * Constructeur de MiniDuck
+     * @param qualityScore, Indice de qualité
+     */
     public MiniDuck(int qualityScore){
         super(MINI,qualityScore);
     }
 
+    /**
+     * @return le prix de base du canard
+     */
     @Override
     public double getBasePrice() {
         return BASE_PRICE;
     }
 
+    /**
+     * @return le type de canards
+     */
     @Override
     public String describe() {
         return " Canard " + MINI.getLabel();
