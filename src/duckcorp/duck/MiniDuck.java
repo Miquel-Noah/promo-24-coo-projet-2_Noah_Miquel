@@ -26,6 +26,6 @@ public class MiniDuck extends Duck{
 
     @Override
     public String describe() {
-        return super.toString() + " Canard " + MINI.getLabel();
+        return " Canard " + MINI.getLabel();
     }
 }

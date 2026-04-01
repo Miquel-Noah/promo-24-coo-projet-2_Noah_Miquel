@@ -26,6 +26,6 @@ public class LuxuryDuck extends Duck{
 
     @Override
     public String describe() {
-        return super.toString() + " Canard " + LUXURY.getLabel();
+        return "Canard " + LUXURY.getLabel();
     }
 }

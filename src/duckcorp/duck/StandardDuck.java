@@ -22,6 +22,6 @@ public class StandardDuck extends Duck {
 
     @Override
     public String describe() {
-        return super.toString() + " Canard " + STANDARD.getLabel();
+        return "Canard " + STANDARD.getLabel();
     }
 }
