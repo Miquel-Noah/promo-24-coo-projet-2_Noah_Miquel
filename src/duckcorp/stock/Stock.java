@@ -55,8 +55,14 @@ public class Stock<T extends Duck> {
      * Attention à la signature de retour : elle doit conserver le type générique T.
      */
     public List<T> remove(DuckType type, int count) {
-        // TODO
-        throw new UnsupportedOperationException("TODO : Stock.remove()");
+        List<T> c = items.stream()
+                .filter( e -> e.getType() == type)
+                .toList();
+        if(c.size() >= count){
+            return c.subList(0,count);
+        }else {
+            throw new IllegalStateException("Pas assez de canards "+type.getLabel()+" en stock");
+        }
     }
 
     /**
