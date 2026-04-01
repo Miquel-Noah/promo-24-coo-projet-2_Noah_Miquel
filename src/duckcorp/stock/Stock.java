@@ -2,11 +2,10 @@ package duckcorp.stock;
 
 import duckcorp.duck.Duck;
 import duckcorp.duck.DuckType;
+import duckcorp.duck.Qualifiable;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Stock générique de canards.
@@ -71,8 +70,9 @@ public class Stock<T extends Duck> {
      * @param type le type à compter
      */
     public int count(DuckType type) {
-        // TODO
-        throw new UnsupportedOperationException("TODO : Stock.count()");
+        return (int)items.stream()
+                .filter(c -> c.getType() == type)
+                .count();
     }
 
     /**
@@ -82,8 +82,7 @@ public class Stock<T extends Duck> {
      * Conseil : appelez isDefective() plutôt que de comparer le score manuellement.
      */
     public int countDefective() {
-        // TODO
-        throw new UnsupportedOperationException("TODO : Stock.countDefective()");
+        return (int) items.stream().filter(Qualifiable::isDefective).count();
     }
 
     /**
@@ -94,7 +93,11 @@ public class Stock<T extends Duck> {
      * Tous les types doivent apparaître dans la map (avec 0 si absent).
      */
     public Map<DuckType, Integer> countByType() {
-        // TODO
-        throw new UnsupportedOperationException("TODO : Stock.countByType()");
+        //items.stream().collect(Collectors.toMap(Duck::getType, ))
+        Map<DuckType, Integer> map = new HashMap<>();
+        for (T c : items){
+            map.put(c.getType(),map.getOrDefault(c.getType(),0));
+        }
+        return map;
     }
 }
